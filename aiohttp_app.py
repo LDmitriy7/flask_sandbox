@@ -10,7 +10,12 @@ async def index(request: web.Request):
     return web.Response(text='Hello, world!')
 
 
+async def check_ip(request: web.Request):
+    return web.Response(text=request.remote)
+
+
 app.router.add_get('/', index)
+app.router.add_get('/check_ip', check_ip)
 
 
 def main():
