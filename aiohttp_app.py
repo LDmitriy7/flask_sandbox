@@ -1,21 +1,37 @@
 from aiohttp import web
 import ssl
 import config
+from datetime import datetime
 
 app = web.Application()
 
 
 async def index(request: web.Request):
     print(request.values())
-    return web.Response(text='Hello, world!')
+    return web.Response(text='Hello world')
 
 
 async def check_ip(request: web.Request):
     return web.Response(text=request.remote)
 
 
+async def timestamp(_request: web.Request):
+    return web.Response(text=str(datetime.now().timestamp()))
+
+
+async def date(request: web.Request):
+    if timestamp := request.query.get('timestamp'):
+        dt = datetime.fromtimestamp(float(timestamp))
+    else:
+        dt = datetime.now()
+
+    return web.Response(text=str(dt))
+
+
 app.router.add_get('/', index)
 app.router.add_get('/check-ip', check_ip)
+app.router.add_get('/timestamp', timestamp)
+app.router.add_get('/date', date)
 
 
 def main():
