@@ -5,10 +5,22 @@ from datetime import datetime
 
 app = web.Application()
 
+index_text = """\
+<html>
+<head>
+    <title>My site</title>
+    <meta name="google-site-verification" content="iDBCzMVJ5DlWMqAou4OBQAlByIHbrwFBq-VNUqUvxmE" />
+</head>
+<body>
+    <h1>Hello, world!</h1>
+</body>
+</html>
+"""
+
 
 async def index(request: web.Request):
     print(request.values())
-    return web.Response(text='Hello world')
+    return web.Response(text=index_text, content_type='text/html')
 
 
 async def check_ip(request: web.Request):
