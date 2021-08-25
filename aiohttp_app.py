@@ -15,7 +15,7 @@ async def check_ip(request: web.Request):
 
 
 app.router.add_get('/', index)
-app.router.add_get('/check_ip', check_ip)
+app.router.add_get('/check-ip', check_ip)
 
 
 def main():
