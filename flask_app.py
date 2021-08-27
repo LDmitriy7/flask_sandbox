@@ -55,8 +55,8 @@ def add_redirect():
         redirect_doc.src = src
         redirect_doc.save()
 
-    redirect_url = url_for('redirect_', key=key)
-    return f'<a href="{redirect_url}" >{key}</a>'
+    redirect_url = url_for('redirect_', key=key, _external=True)
+    return f'<a href="{redirect_url}" >{redirect_url}</a>'
 
 
 if __name__ == '__main__':
